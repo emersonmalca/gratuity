@@ -45,9 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applyStyles() {
         
+        let navbarFont = UIFont(name: "AvenirNext-DemiBold", size: 17) ?? UIFont.systemFont(ofSize: 17)
+        let barbuttonFont = UIFont(name: "AvenirNext-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
+        
         UINavigationBar.appearance().barTintColor = UIColor.clear
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: navbarFont, NSForegroundColorAttributeName:UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes([ NSFontAttributeName: barbuttonFont, NSForegroundColorAttributeName:UIColor.white], for: .normal)
     }
 
 

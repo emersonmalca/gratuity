@@ -23,11 +23,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipPercentageLabel: UILabel!
     
     var didShowFullInterface = false
-    let tipOptions = [0.15, 0.18, 0.2]
     var selectedTipOptionIndex = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Load the default gratuity index
+        selectedTipOptionIndex = GratuityHelper.defaultTipIndex()
         
         // Don't show gratuity or total in the beginning
         gratuityContainer.isHidden = true
@@ -35,6 +37,9 @@ class ViewController: UIViewController {
         
         // Register for keyboard notifications
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        
+        // Register for default gratuity changes
+        NotificationCenter.default.addObserver(self, selector: #selector(defaultGratuityDidChange(notification:)), name: .DefaultGratuityDidChange, object: nil)
         
         // Show keyboard
         billTextField.becomeFirstResponder()
@@ -69,13 +74,19 @@ class ViewController: UIViewController {
         changeTipPercentage(toIndex: selectedTipOptionIndex+1)
     }
     
-    func changeTipPercentage(toIndex: Int) {
-        guard toIndex >= 0 && toIndex < tipOptions.count else {
+    func defaultGratuityDidChange(notification: Notification) {
+        // Reload
+        selectedTipOptionIndex = GratuityHelper.defaultTipIndex()
+        changeTipPercentage(toIndex: selectedTipOptionIndex)
+    }
+    
+    func changeTipPercentage(toIndex index: Int) {
+        guard index >= 0 && index < GratuityHelper.tipOptions.count else {
             return
         }
 
-        selectedTipOptionIndex = toIndex
-        let percent = tipOptions[toIndex]
+        selectedTipOptionIndex = index
+        let percent = GratuityHelper.tipOptions[index]
         tipPercentageLabel.text = String(format: "%.0f%%", percent*100.0)
         
         // Recalculate
@@ -86,7 +97,7 @@ class ViewController: UIViewController {
     func calculateTip() {
         
         let billAmount = Double(billTextField.text!) ?? 0.0
-        let percent = tipOptions[selectedTipOptionIndex]
+        let percent = GratuityHelper.tipOptions[selectedTipOptionIndex]
         let tip = billAmount * percent
         let total = billAmount + tip
         
@@ -102,8 +113,11 @@ class ViewController: UIViewController {
         let width = billCurrencySignLabel.sizeThatFits(billCurrencySignLabel.bounds.size).width
         billCurrencySignWidthConstraint.constant = width
         
+        // Set the placeholder
+        billTextField.placeholder = "0.00"
+        
         // Animate other container into view
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 3.0, options: .beginFromCurrentState, animations: {
+        UIView.animate(withDuration: 0.45, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 3.0, options: .beginFromCurrentState, animations: {
             self.gratuityContainer.isHidden = false
             self.totalContainer.isHidden = false
             self.billCurrencySignLabel.layoutIfNeeded()

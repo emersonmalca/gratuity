@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="gratuity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Calculator" id="BYZ-38-t0r" customClass="ViewController" customModule="gratuity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -53,7 +53,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.24457212936046513" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.23999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="dxX-vL-LZX" firstAttribute="leading" secondItem="Nq0-6N-4uy" secondAttribute="leading" constant="20" id="0ls-E4-vy9"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="7wc-j6-Iba"/>
@@ -188,9 +188,16 @@
                             <constraint firstItem="cvA-2D-5s3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ycX-qf-iCz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VBo-3L-2NX"/>
+                    <navigationItem key="navigationItem" id="VBo-3L-2NX">
+                        <barButtonItem key="rightBarButtonItem" image="btnShowSettings" id="uvJ-KF-KGu">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="m3V-yx-huz" kind="show" id="TWV-ZZ-ZWj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="billCurrencySignLabel" destination="dxX-vL-LZX" id="McI-XW-MYJ"/>
                         <outlet property="billCurrencySignWidthConstraint" destination="5DN-hg-NrZ" id="EKS-1a-qky"/>
@@ -207,6 +214,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1076" y="138.98050974512745"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="eV9-Ej-FyT">
+            <objects>
+                <viewController title="Settings" id="m3V-yx-huz" customClass="SettingsViewController" customModule="gratuity" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dAv-cK-DKy"/>
+                        <viewControllerLayoutGuide type="bottom" id="ojG-hx-Exx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nmi-oh-k2N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DEFAULT GRATUITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQV-2A-xYk">
+                                <frame key="frameInset" minX="16" minY="73" width="147" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="0.082352943720000002" green="0.62745100259999997" blue="0.88235294819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5o-z5-kFt">
+                                <frame key="frameInset" minX="16" minY="102" width="153" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfX-Qi-MhB">
+                                        <frame key="frameInset" minX="46" width="61" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1P-1E-mn0">
+                                        <frame key="frameInset" minX="115" minY="6" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.082352943720000002" green="0.62745100259999997" blue="0.88235294819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onIncreaseGratuity:" destination="m3V-yx-huz" eventType="touchUpInside" id="zHn-Ik-mBy"/>
+                                            <action selector="onIncreaseTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="70h-0D-fzB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3E-Ax-7Nj">
+                                        <frame key="frameInset" minX="8" minY="6" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.082352943720000002" green="0.62745100259999997" blue="0.88235294819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="22"/>
+                                        <state key="normal" title="-">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onDecreaseGratuity:" destination="m3V-yx-huz" eventType="touchUpInside" id="0TR-40-3Ti"/>
+                                            <action selector="onDecreaseTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bBD-iT-juZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13725490196078433" green="0.13726624846458435" blue="0.13723316788673401" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="defaultPercentLabel" destination="RfX-Qi-MhB" id="3ua-Lj-o3K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x1p-zh-deQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1879" y="148"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1IX-HM-8RY">
@@ -227,4 +314,7 @@
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="btnShowSettings" width="20" height="20"/>
+    </resources>
 </document>
